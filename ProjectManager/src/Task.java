@@ -39,8 +39,27 @@ public class Task{
     }
 	
 	public void printTask(){
+		// This method prints the details of Task.
+
 		String headerString = "TASK ID: " + id + " TASK NAME: " + name;
+		String headerBorder = new String(new char[headerString.length()]).replace("\0", "=");
+		String smallBorder  = new String(new char[headerString.length()]).replace("\0", "-");
+	
+		System.out.println();	
+		System.out.println(headerBorder);
 		System.out.println(headerString);
+		System.out.println(headerBorder);
+
+		System.out.println("Time  needed: " + time);
+		System.out.println("Staff needed: " + manpower);
+		System.out.println("DEPENDENCIES: ");
+		System.out.println(smallBorder);
+		for(int i : dependencyIds){
+			System.out.print(i + " ");
+		}
+		System.out.println();
+		System.out.println(headerBorder);
+
 	}	
     public int[] getDependencies(){
         return dependencyIds;
