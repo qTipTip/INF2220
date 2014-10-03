@@ -25,16 +25,23 @@ public class Task{
         this.manpower = manpower;
         this.name = name;
         this.dependencyIds = dependencyIds;
+		this.outEdges = new ArrayList<>();
+		this.dependencyEdges = new ArrayList<>();
     }
 
-    // Methods
+    // Public Methods
     public void addOutEdge(Task destination){
         outEdges.add(new Edge(this, destination));  
     }
+
     public void addDependencyEdge(Task destination){
         dependencyEdges.add(new Edge(this, destination));
     }
-    // Getters
+	
+	public void printTask(){
+		String headerString = "TASK ID: " + id + " TASK NAME: " + name;
+		System.out.println(headerString);
+	}	
     public int[] getDependencies(){
         return dependencyIds;
     }
