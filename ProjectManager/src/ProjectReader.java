@@ -75,7 +75,9 @@ public class ProjectReader {
         int[] dependencyIds = new int[entries.length-5];
         int j = 0;
         for (int i = 4; i < entries.length-1; i++) {
-            dependencyIds[j++] = Integer.parseInt(entries[i]);
+            dependencyIds[j++] = Integer.parseInt(entries[i])-1; // Subtracting by one so
+																 // so dependingIds match with
+																 // array Index
         }
 
         return new Task(id, name, time, manpower, dependencyIds);
