@@ -9,7 +9,7 @@ public class Project {
 	// Field declarations
 	private ProjectReader reader;
 	private Task[] projectTasks;
-
+	private TarjanAlgorithm cycleTester;
 	// Constructor
 	public Project(String fileName){
 		this.reader = new ProjectReader(fileName);
@@ -19,6 +19,8 @@ public class Project {
 	public void initializeProject(){
 		reader.generateProject();
 		projectTasks = reader.getProjectTasks();
+		this.cycleTester = new TarjanAlgorithm(this);
+		cycleTester.findStrongCon();
 	}
 
 	public void printProjectTasks(){
@@ -27,5 +29,10 @@ public class Project {
 		for(Task t : projectTasks){
 			t.printTask();
 		}
+
+	}
+
+	public Task[] getProjectTasks(){
+		return projectTasks;
 	}
 }

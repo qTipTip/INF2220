@@ -17,6 +17,8 @@ public class Task{
     private ArrayList<Edge> dependencyEdges;
 
     // Fields related to the Tajran-algorithm
+	private int index = -1;
+	private int lowLink = -1;
     
     // Constructor
     public Task(int id, String name, int time, int manpower, int[] dependencyIds){
@@ -64,4 +66,25 @@ public class Task{
     public int[] getDependencies(){
         return dependencyIds;
     }
+	public ArrayList<Edge> getOutEdges(){
+		return outEdges;
+	}
+	public int getID(){
+		return id;
+	}
+
+	// Methods related to the Tarjan Algorithm
+	public int getIndex(){
+		return index;
+	}
+	public void setIndex(int i){
+		index = i;	
+	}
+
+	public int getLowLink(){
+		return lowLink;
+	}
+	public void setLowLink(int i){
+		lowLink = i;
+	}
 }

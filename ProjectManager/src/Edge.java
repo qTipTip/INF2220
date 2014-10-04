@@ -10,4 +10,12 @@ public class Edge {
         this.origin = origin;
         this.destination = destination;
     }
+
+	// Public method
+	public Task getDestination(){
+		return destination;
+	}
+	public Task getOrigin(){
+		return origin;
+	}
 }
