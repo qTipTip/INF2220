@@ -75,9 +75,7 @@ public class ProjectReader {
         int[] dependencyIds = new int[entries.length-5];
         int j = 0;
         for (int i = 4; i < entries.length-1; i++) {
-            dependencyIds[j++] = Integer.parseInt(entries[i])-1; // Subtracting by one so
-																 // so dependingIds match with
-																 // array Index
+            dependencyIds[j++] = Integer.parseInt(entries[i]); 
         }
 
         return new Task(id, name, time, manpower, dependencyIds);
@@ -95,8 +93,8 @@ public class ProjectReader {
         for(Task t : projectTasks){
             if(t.getDependencies().length == 0){ continue; } // No dependencies.
             for(int id : t.getDependencies()){
-                generateOutEdge(projectTasks[id], t);
-                generateDependencyEdge(t, projectTasks[id]);
+                generateOutEdge(projectTasks[id-1], t);
+                generateDependencyEdge(t, projectTasks[id-1]);
             }
         }
     }
