@@ -40,7 +40,7 @@ public class TarjanAlgorithm {
 
 		for(Task t : input.getProjectTasks()){
 			if(t.getIndex() == -1){
-				strongConnect(t, 0);
+				strongConnect(t);
 			}
 		}
 		// Print any cycles found
@@ -49,36 +49,30 @@ public class TarjanAlgorithm {
 
 	// Private methods
 	
-	private void strongConnect(Task t, int spacing){
+	private void strongConnect(Task t){
 		// Set the depth index for Task t to the smallest unused index.
 		// and push the task onto the stack.
-		String indent = new String(new char[spacing]).replace("\0", " ");
 		t.setIndex(index);
 		t.setLowLink(index);
 		index++;
 		stack.push(t);
 		// TestPrints
-		System.out.println(indent + "Searching for cycles in: " + t.getID());
 
 		// Consider successors of Task t
 		for(Edge e : t.getOutEdges()){
 			Task successor = e.getDestination();
-			System.out.println(indent + "Considering successor: " + successor.getID());
 			if (successor.getIndex() == -1){
 				// Successor has not yet been visited, recurse on it
-				System.out.println(indent + "Successor " + successor.getID() + " has not yet been visited, recursing");
-				strongConnect(successor, spacing + 2);
+				strongConnect(successor);
 				t.setLowLink(Math.min(t.getLowLink(), successor.getLowLink()));
 			}
 			else if (stack.contains(successor)){
 				// Successor is in stack and hence in the current SCC.
-				System.out.println(indent + "Successor is in stack and in current SCC: " + successor.getID());
 				t.setLowLink(Math.min(t.getLowLink(), successor.getIndex()));
 			}
 		}
 		// If Task t is a root task, pop the stack and generate a SCC.
 		if(t.getLowLink() == t.getIndex()){
-			System.out.println(indent + "Task is a root task: " + t.getID());
 			// Start a new strongly connected component
 			ArrayList<Task> newSCC = new ArrayList<>();
 			// Adds tasks in the SCC
