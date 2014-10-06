@@ -85,12 +85,14 @@ public class TarjanAlgorithm {
 	}
 
 	private void printCycles(){
-		System.out.println("In PrintCycles");
 		for(ArrayList<Task> cycle : output){
 			if(cycle.size() == 1){ continue; } // Ignoring SCCs of only one node.
 			System.out.println("Cycle found");
 			for(Task t : cycle){
-				System.out.println(t.getID() + " ");
+				System.out.print(t.getID());
+				if(t != cycle.get(cycle.size()-1)){
+					System.out.print("\u2192");
+				}
 			}
 			System.out.println();
 		}
