@@ -77,9 +77,9 @@ public class ProjectReader {
         for (int i = 4; i < entries.length-1; i++) {
             dependencyIds[j++] = Integer.parseInt(entries[i]); 
         }
-
-        return new Task(id, name, time, manpower, dependencyIds);
-
+        Task newTask = new Task(id, name, time, manpower, dependencyIds);
+		newTask.setPreCount(dependencyIds.length);
+		return newTask;
     }
 
     private void generateEdges(){

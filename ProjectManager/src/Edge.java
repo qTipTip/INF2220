@@ -18,4 +18,5 @@ public class Edge {
 	public Task getOrigin(){
 		return origin;
 	}
+
 }

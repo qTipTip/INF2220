@@ -25,6 +25,8 @@ public class ProjectManager {
 		// Initializing Project object and generating the graph
 		Project project = new Project(fileName);
 		project.initializeProject();
-		project.printProjectTasks();		
+		// project.printProjectTasks();		
+			
+		project.simulate();
 	}
 }

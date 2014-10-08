@@ -19,7 +19,11 @@ public class Task{
     // Fields related to the Tajran-algorithm
 	private int index = -1;
 	private int lowLink = -1;
-    
+	
+    // Fields relating to simulation of project
+	private int preCount; // Number of predecessors not finished.
+	private int workTime; // Number of time units into the work process
+
     // Constructor
     public Task(int id, String name, int time, int manpower, int[] dependencyIds){
         this.id = id;
@@ -29,6 +33,7 @@ public class Task{
         this.dependencyIds = dependencyIds;
 		this.outEdges = new ArrayList<>();
 		this.dependencyEdges = new ArrayList<>();
+		this.workTime = 0;
     }
 
     // Public Methods
@@ -73,6 +78,41 @@ public class Task{
 		return id;
 	}
 
+	public boolean isRunnable(){
+		if(preCount == 0){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isComplete(){
+		if (time-workTime == 0){
+			return true;
+		}
+		return false;
+	}
+
+	public void alertDependentTasks(){
+		for(Edge e : outEdges){
+			e.getDestination().decrementDependecy();
+		}
+	}
+
+	public void decrementDependecy(){
+		if(preCount >= 1){
+			preCount--;
+		}
+		if(preCount < 0){
+			System.out.println("There is an error in decrementDependency");
+		}
+	}
+	public void incrementWorkTime(){
+		workTime++;
+	}
+
+	public void setPreCount(int preCount){
+		this.preCount = preCount;	
+	}
 	// Methods related to the Tarjan Algorithm
 	public int getIndex(){
 		return index;
