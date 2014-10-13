@@ -15,8 +15,7 @@ public class Task{
     private int[] dependencyIds;
     private ArrayList<Edge> outEdges;
     private ArrayList<Edge> dependencyEdges;
-
-    // Fields related to the Tajran-algorithm
+// Fields related to the Tajran-algorithm
 	private int index = -1;
 	private int lowLink = -1;
 	
@@ -112,6 +111,10 @@ public class Task{
 
 	public void setPreCount(int preCount){
 		this.preCount = preCount;	
+	}
+
+	public int getWorkers(){
+		return manpower;
 	}
 	// Methods related to the Tarjan Algorithm
 	public int getIndex(){

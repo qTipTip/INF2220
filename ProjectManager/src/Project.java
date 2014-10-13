@@ -55,13 +55,20 @@ public class Project {
 		}
 		currentTime = 1;
 		while( !projectDone() ){
-			System.out.println("Tick: " + currentTime);
+			boolean tickTime = false;
 			for(Iterator<Task> i = activeTasks.iterator(); i.hasNext();){
 				// Increments the current time by one, and check if any task
 				// has been completed yet. If so, it adds it to the
 				// finishedTasks container.
 				Task t = i.next();
 				if( t.isComplete() ){
+					if(!tickTime){
+						System.out.println("=====================");
+						System.out.println("Tick: " + currentTime);
+						System.out.println("---------------------");
+						System.out.println("Active workers: " + gettingActiveWorkers());
+					}
+					tickTime = true;
 					System.out.println("Completed: " + t.getID());
 					t.alertDependentTasks(); // Tells the tasks dependent on t that t is done
 					finishedTasks.add(t);
@@ -72,6 +79,13 @@ public class Project {
 				// Adds Tasks ready to be completed to the activeTasks container.
 				Task t = i.next();
 				if ( t.isRunnable() ){
+					if(!tickTime){
+						System.out.println("=====================");
+						System.out.println("Tick: " + currentTime);
+						System.out.println("---------------------");
+						System.out.println("Active workers: " + gettingActiveWorkers());
+					}
+					tickTime = true;
 					activeTasks.add(t);
 					i.remove();
 					System.out.println("Starting: " + t.getID());
@@ -83,9 +97,27 @@ public class Project {
 			}
 			currentTime++;
 		}
-
 	}
+	
+	private void generateSlack(){
+		// This method generates the slack for each task
+		// by traversing the graph once forward and once
+		// backwards, taking note of the time each task is
+		// accessed at the latest.
+		// Requires the variables forwardSlack and backwardSlack
+		// in the Task class.
+		
+		
 
+	}	
+
+	private int gettingActiveWorkers(){
+		int workers = 0;
+		for(Task t : activeTasks){
+			workers = workers + t.getWorkers();	
+		}
+		return workers;
+	}	
 	public Task[] getProjectTasks(){
 		return projectTasks;
 	}
