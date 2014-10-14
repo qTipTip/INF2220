@@ -1,132 +1,127 @@
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.Iterator;
-public class Project {
-	// This class is the graph implementation of
-	// a project. It contains a ProjectReader for
-	// generating the graph structure.
-	//
-	// The generated tasks are stored in Task[] projectTasks
-	// ordered after ID from low to high.
-
+public class Project{
 	// Field declarations
+	public ArrayList<Task> projectTasks;	
+	public ArrayList<Edge> outEdges;
 	private ProjectReader reader;
-	private Task[] projectTasks;
-	private TarjanAlgorithm cycleTester;
+	private TarjanAlgorithm cycleFinder;
+	private ArrayList<Task> activeTasks, finishedTasks, waitingTasks;
 
-	private ArrayList<Task> activeTasks;
-	private ArrayList<Task> finishedTasks;
-	private ArrayList<Task> waitingTasks;
-
-	private int currentTime;
-	// Constructor
-
+	// Public Methods	
 	public Project(String fileName){
 		this.reader = new ProjectReader(fileName);
-		this.activeTasks = new ArrayList<Task>();
-		this.finishedTasks = new ArrayList<Task>();
-		this.waitingTasks = new ArrayList<Task>();
+		this.activeTasks = new ArrayList<>();
+		this.finishedTasks = new ArrayList<>();
+		this.waitingTasks = new ArrayList<>();
+	}	
+
+	public void initialize(){
+		projectTasks = reader.generateProject();
+		cycleFinder = new TarjanAlgorithm(this);
 	}
-
-	// Public methods	
-	public void initializeProject(){
-		reader.generateProject();
-		projectTasks = reader.getProjectTasks();
-		this.cycleTester = new TarjanAlgorithm(this);
-		cycleTester.findStrongCon();
-	}
-
-	public void printProjectTasks(){
-		// Prints any relevant information about the
-		// individual tasks.
-		for(Task t : projectTasks){
-			t.printTask();
-		}
-
-	}
-
 	public void simulate(){
-		// Given that the project is realizible, this
-		// methods finds the optimal way of realizing
-		// the project.
-		ArrayList<Task> tempContainer = new ArrayList<>();
-		
-		for(Task t : projectTasks){
+		for (Task t : projectTasks){
 			waitingTasks.add(t);
 		}
-		currentTime = 1;
+		int currentTime = 0;
 		while( !projectDone() ){
+			String output = "";
 			boolean tickTime = false;
 			for(Iterator<Task> i = activeTasks.iterator(); i.hasNext();){
-				// Increments the current time by one, and check if any task
-				// has been completed yet. If so, it adds it to the
-				// finishedTasks container.
 				Task t = i.next();
-				if( t.isComplete() ){
+				if (t.isComplete()){
 					if(!tickTime){
-						System.out.println("=====================");
-						System.out.println("Tick: " + currentTime);
-						System.out.println("---------------------");
-						System.out.println("Active workers: " + gettingActiveWorkers());
+						output += "Tick: " + currentTime +"\n";
+						//System.out.println("Tick: " + currentTime);
 					}
 					tickTime = true;
-					System.out.println("Completed: " + t.getID());
-					t.alertDependentTasks(); // Tells the tasks dependent on t that t is done
-					finishedTasks.add(t);
+					output += "Completed: " + t.id + "\n";
+					//System.out.println("Completed: " + t.id);
+					t.stop = currentTime;
+					t.alertDependentTasks();
+					finishedTasks.add(t); 
 					i.remove();
-				}	
+				}
 			}
 			for(Iterator<Task> i = waitingTasks.iterator(); i.hasNext(); ){
-				// Adds Tasks ready to be completed to the activeTasks container.
 				Task t = i.next();
-				if ( t.isRunnable() ){
+				if( t.isRunnable() ){
 					if(!tickTime){
-						System.out.println("=====================");
-						System.out.println("Tick: " + currentTime);
-						System.out.println("---------------------");
-						System.out.println("Active workers: " + gettingActiveWorkers());
+						output += "Tick: " + currentTime + "\n";
+						//System.out.println("Tick: " + currentTime);
 					}
 					tickTime = true;
 					activeTasks.add(t);
+					t.start = currentTime;
 					i.remove();
-					System.out.println("Starting: " + t.getID());
+					output += "Starting: " + t.id + "\n";
+					//System.out.println("Starting: " + t.id);
 				}
 			}
-			// Increment the workTime variable in each active task.
+			int activeWorkers = 0;
 			for(Task t : activeTasks){
-				t.incrementWorkTime();	
+				t.activetime++;
+				activeWorkers+=t.staff;
+			}
+			if(!output.isEmpty()){
+				System.out.println();
+				System.out.print(output);
+				System.out.println("Active workers: "+ activeWorkers);
 			}
 			currentTime++;
 		}
-	}
-	
-	private void generateSlack(){
-		// This method generates the slack for each task
-		// by traversing the graph once forward and once
-		// backwards, taking note of the time each task is
-		// accessed at the latest.
-		// Requires the variables forwardSlack and backwardSlack
-		// in the Task class.
-		
-		
-
-	}	
-
-	private int gettingActiveWorkers(){
-		int workers = 0;
-		for(Task t : activeTasks){
-			workers = workers + t.getWorkers();	
+		for(Task t : finishedTasks){
+			time(t);
 		}
-		return workers;
-	}	
-	public Task[] getProjectTasks(){
-		return projectTasks;
+		System.out.println("*** Optimal project completion time: " + (currentTime)+ " ***" );
+		System.out.println("*** Following Tasks are CRITICAL and must be completed as soon as possible ***");
+		for(Task t : finishedTasks){
+			if(t.slack == 0){
+				System.out.print(t.id + " ");
+			}
+		}
+		System.out.println();
+		System.out.println();
 	}
-
 	private boolean projectDone(){
+
 		if( activeTasks.isEmpty() && waitingTasks.isEmpty()){
 			return true;
 		}
 		return false;
 	}
 
+	public void printProjectTasks(){
+		String output = "";
+		for(Task t : projectTasks){
+			output += t.printTask();
+		}
+		System.out.println(output);
+	}
+	public boolean isCyclic(){
+		return cycleFinder.isCyclic();
+	}	
+
+	public int time(Task t){
+		// Computes the slack for each task.
+		int most = 0;
+		if(t.dependencyEdges.size() == 0){
+			return t.time;
+		}
+		for(Edge e : t.dependencyEdges){
+			Task v = e.destination;
+			int tmp = time(v);
+			v.start = tmp-v.time;
+			if(most < tmp){
+				most = tmp;
+			}
+		}
+		for(Edge e : t.dependencyEdges){
+			Task v = e.destination;
+			v.latestart = most-v.time;
+			v.slack = v.latestart - v.start;
+		}
+		return most+t.time;
+	}
 }

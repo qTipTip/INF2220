@@ -2,80 +2,63 @@ import java.util.Stack;
 import java.util.ArrayList;
 
 public class TarjanAlgorithm {
-	// This is an implementation of Tarjans
-	// algorithm for finding the strongly 
-	// connected components of a graph.
+	// An implementation of the Tarjan Algorithm for finding
+	// strongly connected components in a graph.
 	//
-	// The algorithm partitions a directed
-	// graph into the strongly connected
-	// components. 
-	//
-	// Each vertex appears in exactly one of
-	// the strongly connected components, 
-	// and a single vertex not on a cycle
-	// forms a strongly connected cycle by
-	// itself.	
-	// 
-	// Requires from the TaskClass:
-	//		- getLowLink()
-	//		- getIndex()
-	//		- setLowLink()
-	//		- setIndex()
-	
+	// Complexity - O(n)
+
 	// Field declarations
+
 	private Project input;
 	private ArrayList<ArrayList<Task>> output = new ArrayList<>();
-	private int index = 0;
+	private int index = 0;	
 	private Stack<Task> stack = new Stack<>();
 
-	// Constructor
+	// Public methods
+
 	public TarjanAlgorithm(Project input){
-		this.input = input;	
+		this.input = input;
 	}
 
-	// Public methods
-	public void findStrongCon(){
-		// This method calls the strongConnect function on 
-		// all tasks in given project.
+	public boolean isCyclic(){
+		findStrongCon();
+		return printCycles();
+	}
 
-		for(Task t : input.getProjectTasks()){
-			if(t.getIndex() == -1){
+	// Private methods 
+
+	private void findStrongCon(){
+		for(Task t : input.projectTasks){
+			if(t.index == -1){
 				strongConnect(t);
 			}
 		}
-		// Print any cycles found
-		printCycles();
 	}
 
-	// Private methods
-	
 	private void strongConnect(Task t){
-		// Set the depth index for Task t to the smallest unused index.
+		// Setting depth index for t to the smallest unused index
 		// and push the task onto the stack.
-		t.setIndex(index);
-		t.setLowLink(index);
+		t.index = index;
+		t.lowlink = index;
 		index++;
 		stack.push(t);
-		// TestPrints
-
-		// Consider successors of Task t
-		for(Edge e : t.getOutEdges()){
-			Task successor = e.getDestination();
-			if (successor.getIndex() == -1){
-				// Successor has not yet been visited, recurse on it
-				strongConnect(successor);
-				t.setLowLink(Math.min(t.getLowLink(), successor.getLowLink()));
+	
+		// Considering successors of t
+		for(Edge e : t.outEdges){
+			Task v = e.destination;
+			if(v.index == -1){
+				// Successor not yet visited, recursing
+				strongConnect(v);
+				t.lowlink = Math.min(t.lowlink, v.lowlink);
 			}
-			else if (stack.contains(successor)){
-				// Successor is in stack and hence in the current SCC.
-				t.setLowLink(Math.min(t.getLowLink(), successor.getIndex()));
+			else if (stack.contains(v)){
+				// Successor is in stack and hence in current SCC
+				t.lowlink = Math.min(t.lowlink, v.index);
 			}
 		}
-		// If Task t is a root task, pop the stack and generate a SCC.
-		if(t.getLowLink() == t.getIndex()){
-			// Start a new strongly connected component
+		// If t is a root task, pop stack and generate SCC
+		if(t.lowlink == t.index){
 			ArrayList<Task> newSCC = new ArrayList<>();
-			// Adds tasks in the SCC
 			while(stack.peek() != t){
 				newSCC.add(stack.pop());
 			}
@@ -84,17 +67,19 @@ public class TarjanAlgorithm {
 		}
 	}
 
-	private void printCycles(){
+	private boolean printCycles(){
+		boolean cyclic = false;
 		for(ArrayList<Task> cycle : output){
-			if(cycle.size() == 1){ continue; } // Ignoring SCCs of only one node.
-			System.out.println("Cycle found");
+			if(cycle.size() == 1){ continue; } // Ignoring SCCs of only one Task
+			cyclic = true;	
 			for(Task t : cycle){
-				System.out.print(t.getID());
+				System.out.print(t.id);
 				if(t != cycle.get(cycle.size()-1)){
 					System.out.print("\u2192");
 				}
 			}
-			System.out.println();
 		}
+		System.out.println();
+		return cyclic;
 	}
 }
