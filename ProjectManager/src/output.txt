@@ -1,0 +1,348 @@
+buildhouse1.txt read successfully!
+
+
+Tick: 0
+Starting: 5
+Active workers: 2
+
+Tick: 4
+Completed: 5
+Starting: 1
+Starting: 6
+Active workers: 4
+
+Tick: 6
+Completed: 6
+Active workers: 2
+
+Tick: 8
+Completed: 1
+Starting: 2
+Active workers: 4
+
+Tick: 14
+Completed: 2
+Starting: 3
+Starting: 4
+Starting: 7
+Active workers: 7
+
+Tick: 15
+Completed: 3
+Completed: 4
+Active workers: 2
+
+Tick: 18
+Completed: 7
+Starting: 8
+Active workers: 4
+
+Tick: 22
+Completed: 8
+Active workers: 0
+*** Optimal project completion time: 23 ***
+*** Following Tasks are CRITICAL and must be completed as soon as possible ***
+5 1 2 4 7 8 
+
+Name: Build-walls Id: 1 Time: 4 Staff: 2 lateStart: 4 Slack: 0
+Dependencies: 5 
+
+Name: Build-roofs Id: 2 Time: 6 Staff: 4 lateStart: 8 Slack: 0
+Dependencies: 1 
+
+Name: Put-on-wallpapers Id: 3 Time: 1 Staff: 2 lateStart: 17 Slack: 3
+Dependencies: 1 2 
+
+Name: Put-on-tiles Id: 4 Time: 1 Staff: 3 lateStart: 0 Slack: 0
+Dependencies: 2 
+
+Name: Build-foundation Id: 5 Time: 4 Staff: 2 lateStart: 0 Slack: 0
+Dependencies: 
+
+Name: Make-floor Id: 6 Time: 2 Staff: 2 lateStart: 12 Slack: 8
+Dependencies: 5 
+
+Name: Put-carpet-floor Id: 7 Time: 4 Staff: 2 lateStart: 14 Slack: 0
+Dependencies: 6 2 
+
+Name: Move-in Id: 8 Time: 4 Staff: 4 lateStart: 0 Slack: 0
+Dependencies: 3 7 
+
+
+buildhouse2.txt read successfully!
+6→3→2→1
+Project dependencies are cyclic, therefore the project is not realizable
+Name: Build-walls Id: 1 Time: 4 Staff: 2 lateStart: 0 Slack: 0
+Dependencies: 5 6 
+
+Name: Build-roofs Id: 2 Time: 6 Staff: 4 lateStart: 0 Slack: 0
+Dependencies: 1 
+
+Name: Put-on-wallpapers Id: 3 Time: 1 Staff: 2 lateStart: 0 Slack: 0
+Dependencies: 1 2 
+
+Name: Put-on-tiles Id: 4 Time: 1 Staff: 3 lateStart: 0 Slack: 0
+Dependencies: 2 
+
+Name: Build-foundation Id: 5 Time: 4 Staff: 2 lateStart: 0 Slack: 0
+Dependencies: 
+
+Name: Make-floor Id: 6 Time: 2 Staff: 2 lateStart: 0 Slack: 0
+Dependencies: 5 3 
+
+Name: Put-carpet-floor Id: 7 Time: 4 Staff: 2 lateStart: 0 Slack: 0
+Dependencies: 6 2 
+
+Name: Move-in Id: 8 Time: 4 Staff: 4 lateStart: 0 Slack: 0
+Dependencies: 3 7 
+
+
+buildrail.txt read successfully!
+
+
+Tick: 0
+Starting: 9
+Active workers: 10
+
+Tick: 3
+Completed: 9
+Starting: 10
+Starting: 11
+Starting: 12
+Starting: 14
+Starting: 16
+Starting: 17
+Active workers: 56
+
+Tick: 4
+Completed: 11
+Starting: 18
+Starting: 19
+Starting: 20
+Active workers: 64
+
+Tick: 5
+Completed: 10
+Starting: 2
+Active workers: 70
+
+Tick: 12
+Completed: 2
+Active workers: 60
+
+Tick: 16
+Completed: 20
+Starting: 23
+Active workers: 61
+
+Tick: 28
+Completed: 14
+Starting: 15
+Active workers: 61
+
+Tick: 29
+Completed: 19
+Active workers: 57
+
+Tick: 33
+Completed: 12
+Starting: 13
+Active workers: 57
+
+Tick: 38
+Completed: 16
+Active workers: 45
+
+Tick: 44
+Completed: 18
+Starting: 21
+Active workers: 46
+
+Tick: 46
+Completed: 23
+Starting: 26
+Active workers: 48
+
+Tick: 48
+Completed: 17
+Completed: 15
+Starting: 22
+Active workers: 29
+
+Tick: 51
+Completed: 13
+Starting: 8
+Active workers: 24
+
+Tick: 59
+Completed: 21
+Starting: 24
+Active workers: 26
+
+Tick: 63
+Completed: 8
+Starting: 3
+Active workers: 29
+
+Tick: 64
+Completed: 22
+Completed: 3
+Starting: 25
+Active workers: 21
+
+Tick: 66
+Completed: 26
+Active workers: 14
+
+Tick: 119
+Completed: 24
+Starting: 4
+Active workers: 13
+
+Tick: 124
+Completed: 25
+Starting: 5
+Starting: 27
+Active workers: 22
+
+Tick: 134
+Completed: 4
+Active workers: 16
+
+Tick: 136
+Completed: 5
+Active workers: 10
+
+Tick: 149
+Completed: 27
+Starting: 28
+Starting: 29
+Active workers: 20
+
+Tick: 179
+Completed: 28
+Active workers: 10
+
+Tick: 186
+Completed: 29
+Starting: 1
+Starting: 6
+Starting: 7
+Starting: 30
+Active workers: 29
+
+Tick: 204
+Completed: 7
+Active workers: 23
+
+Tick: 206
+Completed: 1
+Completed: 30
+Starting: 31
+Active workers: 13
+
+Tick: 213
+Completed: 6
+Active workers: 7
+
+Tick: 218
+Completed: 31
+Active workers: 0
+*** Optimal project completion time: 219 ***
+*** Following Tasks are CRITICAL and must be completed as soon as possible ***
+9 11 10 2 20 14 12 18 23 17 13 21 22 3 25 4 5 27 29 7 1 30 6 31 
+
+Name: Install-pavement Id: 1 Time: 20 Staff: 10 lateStart: 0 Slack: 0
+Dependencies: 28 29 
+
+Name: Install-railing Id: 2 Time: 7 Staff: 10 lateStart: 0 Slack: 0
+Dependencies: 10 
+
+Name: Install-ticketmachine Id: 3 Time: 1 Staff: 10 lateStart: 0 Slack: 0
+Dependencies: 8 
+
+Name: Paint-tower-1-with-arch Id: 4 Time: 15 Staff: 6 lateStart: 0 Slack: 0
+Dependencies: 24 
+
+Name: Paint-tower-2 Id: 5 Time: 12 Staff: 6 lateStart: 0 Slack: 0
+Dependencies: 25 
+
+Name: Paint-trusses Id: 6 Time: 27 Staff: 6 lateStart: 0 Slack: 0
+Dependencies: 28 29 
+
+Name: Paint-cables-and-rods Id: 7 Time: 18 Staff: 6 lateStart: 0 Slack: 0
+Dependencies: 28 29 
+
+Name: Put-lane-tunnel-and-intersection Id: 8 Time: 12 Staff: 7 lateStart: 194 Slack: 143
+Dependencies: 13 15 
+
+Name: Setup-barrack Id: 9 Time: 3 Staff: 10 lateStart: 0 Slack: 0
+Dependencies: 
+
+Name: Prepare-storage Id: 10 Time: 2 Staff: 4 lateStart: 3 Slack: 0
+Dependencies: 9 
+
+Name: Rig-ramspace-reinforcing Id: 11 Time: 1 Staff: 4 lateStart: 3 Slack: 0
+Dependencies: 9 
+
+Name: Build-tunnel Id: 12 Time: 30 Staff: 12 lateStart: 3 Slack: 0
+Dependencies: 9 
+
+Name: Clean-tunnel Id: 13 Time: 18 Staff: 12 lateStart: 33 Slack: 0
+Dependencies: 12 
+
+Name: Build-intersection Id: 14 Time: 25 Staff: 12 lateStart: 3 Slack: 0
+Dependencies: 9 
+
+Name: Clean-intersection Id: 15 Time: 20 Staff: 12 lateStart: 31 Slack: 3
+Dependencies: 14 
+
+Name: Build-towerfoundation-1 Id: 16 Time: 35 Staff: 12 lateStart: 9 Slack: 6
+Dependencies: 9 
+
+Name: Build-towerfoundation-2 Id: 17 Time: 45 Staff: 12 lateStart: 3 Slack: 0
+Dependencies: 9 
+
+Name: Make-armouring-tower-1 Id: 18 Time: 40 Staff: 4 lateStart: 4 Slack: 0
+Dependencies: 11 
+
+Name: Make-armouring-tower-2 Id: 19 Time: 25 Staff: 4 lateStart: 23 Slack: 19
+Dependencies: 11 
+
+Name: Make-armouring-arch Id: 20 Time: 12 Staff: 4 lateStart: 4 Slack: 0
+Dependencies: 11 
+
+Name: Encase-and-armour-tower-1 Id: 21 Time: 15 Staff: 5 lateStart: 44 Slack: 0
+Dependencies: 16 18 
+
+Name: Encase-and-armour-tower-2 Id: 22 Time: 16 Staff: 5 lateStart: 48 Slack: 0
+Dependencies: 17 19 
+
+Name: Encase-and-armour-arch Id: 23 Time: 30 Staff: 5 lateStart: 16 Slack: 0
+Dependencies: 20 
+
+Name: Cast-tower-1 Id: 24 Time: 60 Staff: 7 lateStart: 64 Slack: 5
+Dependencies: 21 
+
+Name: Cast-tower-2 Id: 25 Time: 60 Staff: 7 lateStart: 64 Slack: 0
+Dependencies: 22 
+
+Name: Cast-arch Id: 26 Time: 20 Staff: 7 lateStart: 186 Slack: 140
+Dependencies: 23 
+
+Name: Stretch-two-maincables Id: 27 Time: 25 Staff: 10 lateStart: 124 Slack: 0
+Dependencies: 24 25 
+
+Name: Build-truss-1-with-rods Id: 28 Time: 30 Staff: 10 lateStart: 156 Slack: 7
+Dependencies: 27 
+
+Name: Build-truss-2-with-rods Id: 29 Time: 37 Staff: 10 lateStart: 149 Slack: 0
+Dependencies: 27 
+
+Name: Cast-lane-on-truss Id: 30 Time: 20 Staff: 7 lateStart: 186 Slack: 0
+Dependencies: 28 29 
+
+Name: Polish-lane-on-arch Id: 31 Time: 12 Staff: 7 lateStart: 0 Slack: 0
+Dependencies: 30 26 8 
+
+

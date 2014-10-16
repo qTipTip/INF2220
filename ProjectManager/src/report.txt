@@ -1,0 +1,21 @@
+INF2220 - Oblig 2 - Report
+
+There are a few main algorithms in my implementation of
+this assignment.
+
+1) The implementation of Tarjan's algorithm for finding strongly connected
+components in a directed graph is accessing each node once, and each edge at most
+twice.
+
+Complexity: O(|V| + |E|)
+
+2) The simulation of the project. Each task is checked once every iteration of the while-loop. Either to check whether it is runnable, or whether it is complete.
+The algorithm consists of two for-loops nested inside a while-loop.
+The complexity of the for loops are linear, that is O(n).
+The complexity of the while loop all depends on the input, but I will approximate it to
+O(log n)
+
+Complexity: O(n log n)
+
+
+
