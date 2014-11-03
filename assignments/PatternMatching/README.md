@@ -1,5 +1,5 @@
 # Generalized Pattern Matching With Wildcards
-
+## Third mandatory assignment in INF2220
 The task at hand is to implement a generalization of the Boyer-Moore-Horspool bad
 character shift algorithm to allow wildcards to be used in the needle.
 
@@ -10,4 +10,4 @@ character shift algorithm to allow wildcards to be used in the needle.
 * The program must output the text in the haystack that matched the needle.
 * The program must take two filenames as an argument. First being the needle and second the haystack.
 
-## Algorithm Complexity
+### Algorithm Complexity
