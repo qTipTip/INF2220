@@ -16,8 +16,8 @@ Create a table of 256 member, one for each character in the alphabet. Initialize
 Generate the bad character shift values for each character in the needle.
 * Example:  
 
-a l g o r i t h m  
+algorithm  
 
-1 2 3 4 5 6 7 8 9  
+123456789  
 
 #### Algorithm Complexity
