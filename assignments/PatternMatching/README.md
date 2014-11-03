@@ -14,7 +14,10 @@ character shift algorithm to allow wildcards to be used in the needle.
 #### Preprocessing
 Create a table of 256 member, one for each character in the alphabet. Initialize all the values with the length of the needle.
 Generate the bad character shift values for each character in the needle.
-* Example: 
-a l g o r i t h m 
-1 2 3 4 5 6 7 8 9
+* Example:  
+
+a l g o r i t h m  
+
+1 2 3 4 5 6 7 8 9  
+
 #### Algorithm Complexity
