@@ -1,4 +1,4 @@
-# Generalized Pattern Matching With Wildcards
+#Generalized Pattern Matching With Wildcards
 ## Third mandatory assignment in INF2220
 The task at hand is to implement a generalization of the Boyer-Moore-Horspool bad
 character shift algorithm to allow wildcards to be used in the needle.
@@ -11,8 +11,7 @@ character shift algorithm to allow wildcards to be used in the needle.
 * The program must take two filenames as an argument. First being the needle and second the haystack.
 
 ### Bad Character Shift explained:
-Bad character shift is a table over all possible characters, that specify how far to shiftthe needle if one finds the character at the end of the needle. That means you have to subtract the
-number of characters already matched before jumping. Each character is given a shift valuethat is equal to the length of the needle minus the index of the last occurence of the character. Any character not occuring in the needle is given a character shift equal to the
+Bad character shift is a table over all possible characters, that specify how far to shiftthe needle if one finds the character at the end of the needle. That means you have to subtract the number of characters already matched before jumping. Each character is given a shift value that is equal to the length of the needle minus the index of the last occurence of the character. Any character not occuring in the needle is given a character shift equal to the
 length of the word.
 
 #### Preprocessing
@@ -24,6 +23,8 @@ The question now is what role does the wildcard play into all this.
 Let _ denote a wildcard.
 Generating a bad character shift for the needle "he_p" is going to look something like this.
 h = 1, e = 2, _ = 0, p = 4
-The reason for this is, _ is matching no matter what, by definition of a wildcard.
-#### Algorithm Complexity
+he reason for this is, _ is matching no matter what, by definition of a wildcard.
 
+###### Representing matches in JAVA
+
+#### Algorithm Complexity
