@@ -19,15 +19,19 @@ public class BoyerMoore{
 	 * Generates the table containing bad
 	 * character shift values.Shift values for characters not occuring
 	 * in the needle is set to the length
-	 * of the needle.
+	 * of the needle.And if the shift value is higher than the shift value
+	 * for the wildcard occuring the furthest to the right, then use the wildcard
+	 * shift value.
 	 */
 	private void generateBadCharTable(){
 		int[] table = new int[256];
+		int minWildcardShift = needle.length;
 		for (int i = 0; i < table.length; ++i) {
 			table[i] = needle.length;	
 		}
 		for (int i = 0; i < needle.length - 1; ++i) {
 			table[needle[i]] = needle.length - 1 - i;	
+			System.out.println("Setting character shift for " + needle[i] + " to " + (needle.length - 1 - i));
 		}
 		this.shiftTable = table;
 	}
@@ -49,20 +53,21 @@ public class BoyerMoore{
 		int windowStart = 0;
 		int windowStop = needle.length;
 		generateBadCharTable();
-		while(windowStop < haystack.length){
+		while(windowStop <= haystack.length){
 			boolean fullMatch = true;
-			for (int i = windowStart, j = 0; i < windowStop; i++){
+			System.out.println("Current window: " + getSubString(windowStart, windowStop));
+			for (int i = windowStop-1, j = needle.length - 1; i >= windowStart; i--){
 				if(needle[j] == '_'){
 					System.out.println("Wildcard is matching " +  haystack[i]);		
-					j++;
+					j--;
 				}else if(needle[j] == haystack[i]){
 					System.out.println(needle[j] + " is matching " + haystack[i]);
-					j++;
+					j--;
 				} else {
 					System.out.println(needle[j] + " is not matching " + haystack[i]);
 					System.out.println("Shifting window by: " + shiftTable[haystack[i]]);
-					windowStart += shiftTable[haystack[i]];
-					windowStop += shiftTable[haystack[i]];
+					windowStart += Math.min(shiftTable['_'], shiftTable[haystack[i]]);
+					windowStop += Math.min(shiftTable['_'], shiftTable[haystack[i]]);
 					fullMatch = false;
 					break;
 				}
@@ -72,6 +77,8 @@ public class BoyerMoore{
 				windowStart += 1;
 				windowStop += 1;
 			}
+			System.out.println("Current windowstart: " + windowStart);
+			System.out.println("Current windowstop: " + windowStop);
 		}
 	}
 }
