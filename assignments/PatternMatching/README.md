@@ -21,10 +21,9 @@ Generate the bad character shift values for each character in the needle.
 ### Bad Character Shift with wildcards:
 The question now is what role does the wildcard play into all this.
 Let _ denote a wildcard.
-Generating a bad character shift for the needle "he_p" is going to look something like this.
-h = 1, e = 2, _ = 0, p = 4
-he reason for this is, _ is matching no matter what, by definition of a wildcard.
-
+While searching for a needle with a wildcard, we can simply chose to only
+try to match up characters up until the first wildcard occurs, because this is going to match by
+definition. 
 ###### Representing matches in JAVA
 
 #### Algorithm Complexity

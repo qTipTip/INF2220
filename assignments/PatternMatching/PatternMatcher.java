@@ -3,7 +3,7 @@
 // 
 // Given a needle and a haystack, it prints out every occurence of the needle along
 // with their position in the haystack. 
-class PatternMatcher{
+public class PatternMatcher{
 
 	public static void main(String[] args){
 		
@@ -20,5 +20,6 @@ class PatternMatcher{
 		}
 		
 		BoyerMoore needleFinder = new BoyerMoore(needle, haystack);
+		needleFinder.startSearch();
 	}
 }
