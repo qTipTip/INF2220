@@ -56,12 +56,12 @@ Let N be the length of the needle and M the length of the haystack.
 The method has one single call to the method stripChar() along all the
 other constant time operations. 
 
-*O(N)
+* O(N)
 
 ##### getSubString()
 Just a single call, thus constant complexity
 
-*O(1)
+* O(1)
 
 ##### startSearch()
 Let N be the length of the needle and M the length of the haystack.
