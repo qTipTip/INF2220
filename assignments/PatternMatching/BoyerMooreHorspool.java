@@ -93,7 +93,6 @@ public class BoyerMooreHorspool{
 				break;
 			}
 		}
-		System.out.println(new String(array).substring(start, end + 1).toCharArray());
 		return new String(array).substring(start, end + 1).toCharArray();
 	}
 }
