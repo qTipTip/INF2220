@@ -1,18 +1,14 @@
-// This is the main class for the pattern matching program
-// for the third mandatory assignment in INF2220 - Fall 2014.
-// 
-// Given a needle and a haystack, it prints out every occurence of the needle along
-// with their position in the haystack. 
+import java.util.Scanner;
+import java.io.File;
+
 public class PatternMatcher{
 
 	public static void main(String[] args){
-		
 		String needle = "";
-		String haystack = "";
-
+		String haystack = "";	
 		try {
-			needle = args[0];
-			haystack = args[1];
+			needle = new Scanner(new File(args[0])).useDelimiter("\\Z").next();
+			haystack = new Scanner(new File(args[1])).useDelimiter("\\Z").next();
 		} catch(Exception e) {
 			System.out.println();	
 			System.out.println("Please specify a needle and a haystack as command line arguments");
