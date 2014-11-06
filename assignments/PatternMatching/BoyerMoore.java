@@ -26,12 +26,13 @@ public class BoyerMoore{
 	private void generateBadCharTable(){
 		int[] table = new int[256];
 		int minWildcardShift = needle.length;
+		char[] tempNeedle = trimRight('_', needle);
 		for (int i = 0; i < table.length; ++i) {
 			table[i] = needle.length;	
 		}
-		for (int i = 0; i < needle.length - 1; ++i) {
-			table[needle[i]] = needle.length - 1 - i;	
-			System.out.println("Setting character shift for " + needle[i] + " to " + (needle.length - 1 - i));
+		for (int i = 0; i < tempNeedle.length - 1; ++i) {
+			table[tempNeedle[i]] = needle.length - 1 - i;	
+			System.out.println("Setting character shift for " + tempNeedle[i] + " to " + (tempNeedle.length - 1 - i));
 		}
 		this.shiftTable = table;
 	}
@@ -81,4 +82,13 @@ public class BoyerMoore{
 			System.out.println("Current windowstop: " + windowStop);
 		}
 	}
+
+	private char[] trimRight(char c, char[] array){
+		for(int i = array.length - 1; i >= 0; i--){
+			if(array[i] != c){
+				return new String(array).substring(0, i).toCharArray();	
+			}			
+		}	
+		return array;	
+	}	
 }
