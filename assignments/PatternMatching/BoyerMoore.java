@@ -13,8 +13,6 @@ public class BoyerMoore{
 		this.haystack = haystack.toCharArray();
 	}	
 
-
-
 	/** 
 	 * Generates the table containing bad
 	 * character shift values.Shift values for characters not occuring
@@ -26,22 +24,13 @@ public class BoyerMoore{
 	 */
 	private void generateBadCharTable(){
 		int[] table = new int[256];
-		int minWildcardShift = needle.length;
-		int trailingWildcards = 0;
-		for (int i = needle.length-1; i >= 0; i--){
-			if(needle[i] != '_'){
-				break;
-			}
-			trailingWildcards++;
-		}	
+		char[] tempNeedle = stripChar(needle);
 		for (int i = 0; i < table.length; ++i) {
-			table[i] = needle.length;	
+			table[i] = tempNeedle.length;	
 		}
-		for (int i = 0; i < needle.length - 1 ; ++i) {
-			table[needle[i]] = needle.length - 1 - i - trailingWildcards;	
-			System.out.println("Setting character shift for " + needle[i] + " to " + (needle.length - 1 - i));
+		for (int i = 0; i < tempNeedle.length - 1 ; ++i) {
+			table[tempNeedle[i]] = tempNeedle.length - 1 - i;	
 		}
-		System.out.println("Trailing wildcards: " + trailingWildcards);
 		this.shiftTable = table;
 	}
 
@@ -64,39 +53,47 @@ public class BoyerMoore{
 		generateBadCharTable();
 		while(windowStop <= haystack.length){
 			boolean fullMatch = true;
-			System.out.println("Current window: " + getSubString(windowStart, windowStop));
 			for (int i = windowStop-1, j = needle.length - 1; i >= windowStart; i--){
 				if(needle[j] == '_'){
-					System.out.println("Wildcard is matching " +  haystack[i]);		
 					j--;
 				}else if(needle[j] == haystack[i]){
-					System.out.println(needle[j] + " is matching " + haystack[i]);
 					j--;
 				} else {
-					System.out.println(needle[j] + " is not matching " + haystack[i]);
-					System.out.println("Shifting window by: " + shiftTable[haystack[i]]);
-					windowStart += Math.min(shiftTable['_'], shiftTable[haystack[i]]);
-					windowStop += Math.min(shiftTable['_'], shiftTable[haystack[i]]);
+					windowStart += shiftTable[haystack[i]];
+					windowStop += shiftTable[haystack[i]];
 					fullMatch = false;
 					break;
 				}
 			}
 			if(fullMatch){
-				System.out.println("Found a match as: " + getSubString(windowStart, windowStop));	
+				System.out.println("======================");
+				System.out.println("Needle : " + new String(needle));
+				System.out.println("----------------------");
+				System.out.println("Match  : " + getSubString(windowStart, windowStop));
+				System.out.println("Start  : " + windowStart);
+				System.out.println("Stop   : " + (windowStop-1));
 				windowStart += 1;
 				windowStop += 1;
 			}
-			System.out.println("Current windowstart: " + windowStart);
-			System.out.println("Current windowstop: " + windowStop);
 		}
 	}
 
-	private char[] trimRight(char c, char[] array){
+	private char[] stripChar(char[] array){
+		int end = 0;
+		int start = 0;
 		for(int i = array.length - 1; i >= 0; i--){
-			if(array[i] != c){
-				return new String(array).substring(0, i).toCharArray();	
-			}			
-		}	
-		return array;	
-	}	
+			if(array[i] != '_'){
+				end = i;
+				break;		
+			}
+		}
+		for(int i = end; i >= 0; i--){
+			if(array[i] == '_'){
+				start = i+1;	
+				break;
+			}
+		}
+		System.out.println(new String(array).substring(start, end + 1).toCharArray());
+		return new String(array).substring(start, end + 1).toCharArray();
+	}
 }
