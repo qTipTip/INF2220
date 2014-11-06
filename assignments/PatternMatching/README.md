@@ -95,18 +95,22 @@ Consistng of two for loops. Worst case, this gives
 * O(N)
 
 ### How to run
-* Compilation
+##### Compilation
+
 	javac PatternMatcher.java BoyerMooreHorspool.java
-* Running:
+
+##### Running:
+
 	java PatternMatcher needle.txt haystack.txt
 
 ### Comments
 
-* Assumptions:
+##### Assumptions:
 
 In this implementation, I've assumed that the needle does not contain any whitespaces.
 
-* Credit:
+##### Credit:
+
 The code that reads files as one line was taken from the top answer at:
 http://stackoverflow.com/questions/3402735/what-is-simplest-way-to-read-a-file-into-string
 
