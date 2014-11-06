@@ -40,10 +40,10 @@ This is the class that contains the implementation of the Boyer-Moore-Hoorspool
 algorithm. 
 
 #### Method overview:
-*generateBadCharTable()
-*getSubString()
-*startSearch()
-*stripChar()
+* generateBadCharTable()
+* getSubString()
+* startSearch()
+* stripChar()
 
 ##### generateBadCharTable()
 This is the method that generates the bad character shift table.
