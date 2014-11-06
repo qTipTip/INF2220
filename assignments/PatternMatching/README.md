@@ -103,7 +103,66 @@ Consistng of two for loops. Worst case, this gives
 
 	java PatternMatcher needle.txt haystack.txt
 
-### Comments
+##### Expected Test Results:
+
+###### Test 1
+
+	java PatternMatcher needle1.txt haystack1.txt
+	
+should yield the result:
+
+	=====================
+	Needle: heisanndå
+	---------------------
+	Match : heisanndå
+	Start : 30
+	Stop  : 38			
+
+###### Test 2
+
+	java PatternMatcher needle2.txt haystack2.txt
+
+should yield the result:
+
+	=====================
+	Needle: __hello_bye
+	---------------------
+	Match : aahellobbye
+	Start : 36
+	Stop  : 46			
+	=====================
+	Needle: __hello_bye
+	---------------------
+	Match : bchellotbye
+	Start : 53
+	Stop  : 63			
+
+###### Test 3
+
+	java PatternMatcher needle3.txt haystack3.txt
+
+should yield the result: 
+
+	=====================
+	Needle: _____
+	---------------------
+	Match : sklas
+	Start : 0
+	Stop  : 4			
+	=====================
+	Needle: _____
+	---------------------
+	Match : klasa
+	Start : 1
+	Stop  : 5			
+	=====================
+	Needle: _____
+	---------------------
+	Match : lasaj
+	Start : 2
+	Stop  : 6			
+
+### Comment
 
 ##### Assumptions:
 
