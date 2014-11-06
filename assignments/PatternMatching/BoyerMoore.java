@@ -21,19 +21,27 @@ public class BoyerMoore{
 	 * in the needle is set to the length
 	 * of the needle.And if the shift value is higher than the shift value
 	 * for the wildcard occuring the furthest to the right, then use the wildcard
-	 * shift value.
+	 * shift value. Keeps track of the number of trailing wildcards, as these alter the
+	 * bad character shift values needed.
 	 */
 	private void generateBadCharTable(){
 		int[] table = new int[256];
 		int minWildcardShift = needle.length;
-		char[] tempNeedle = trimRight('_', needle);
+		int trailingWildcards = 0;
+		for (int i = needle.length-1; i >= 0; i--){
+			if(needle[i] != '_'){
+				break;
+			}
+			trailingWildcards++;
+		}	
 		for (int i = 0; i < table.length; ++i) {
 			table[i] = needle.length;	
 		}
-		for (int i = 0; i < tempNeedle.length - 1; ++i) {
-			table[tempNeedle[i]] = needle.length - 1 - i;	
-			System.out.println("Setting character shift for " + tempNeedle[i] + " to " + (tempNeedle.length - 1 - i));
+		for (int i = 0; i < needle.length - 1 ; ++i) {
+			table[needle[i]] = needle.length - 1 - i - trailingWildcards;	
+			System.out.println("Setting character shift for " + needle[i] + " to " + (needle.length - 1 - i));
 		}
+		System.out.println("Trailing wildcards: " + trailingWildcards);
 		this.shiftTable = table;
 	}
 
