@@ -15,7 +15,7 @@ public class PatternMatcher{
 			System.out.println();
 		}
 		
-		BoyerMoore needleFinder = new BoyerMoore(needle, haystack);
+		BoyerMooreHorspool needleFinder = new BoyerMooreHorspool(needle, haystack);
 		needleFinder.startSearch();
 	}
 }

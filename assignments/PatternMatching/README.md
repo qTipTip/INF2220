@@ -33,9 +33,9 @@ This is the class containing the main method.
 It uses the Scanner module for reading the needle and haystack from file.
 If no valid needle or haystack is found it exits.
 
-It calls the BoyerMoore.startSearch() method.
+It calls the BoyerMooreHorspool.startSearch() method.
 
-### BoyerMoore.java
+### BoyerMooreHorspool.java
 This is the class that contains the implementation of the Boyer-Moore-Hoorspool
 algorithm. 
 
