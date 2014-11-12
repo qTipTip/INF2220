@@ -4,6 +4,8 @@
 \usepackage[english]{babel} % English language/hyphenation
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
 \usepackage{graphicx} % Embedding graphics in document
+\usepackage{minted}
+\usepackage{hyperref}
 \usepackage{caption}
 \usepackage{listings}
 % Custom code listing
@@ -93,6 +95,10 @@
   then \(v_j\) appears \textit{after} \(v_i\) in the ordering.  
 \end{definition}
 
+\begin{definition}[Indegree]
+  The \textbf{indegree} of a vertex \(v\) is defined as the number of edges \(\left(u,v\right)\).
+\end{definition}
+
 \subsection{Representation of graphs}
 
 \paragraph{Adjacency matrix} There are several ways to represent a graph. The
@@ -107,7 +113,46 @@ If the graph on the other hand is not dense, an \textbf{adjacency list} represen
 
 \subsection{Graph algorithms}
 
+\subsubsection{Topological Sort}
+\hyperref[toposort]{\textbf{See Pseudocode}}
+It is clear that any cyclic graphs can not be topologically sorted.
+The ordering is not necessarily unique, thus you might get different results.
+The usual algorithms for topological sorting have a running time
+\( O \left( |V| + |E| \right) \).
+
+\begin{enumerate}
+  \item Find a vertex with no incoming edges (indegree zero)
+  \item Print this vertex, and remove it, and its edges, from the graph.
+  \item Repeat from step 1 until all vertices has been checked.
+\end{enumerate}
+\begin{figure}[p]
+  \begin{minted}[bgcolor=backcolour]{java}
+    void toposort() throws CycleFoundException{
+      Queue<Vertex> q = new Queue<Vertex>();
+      int counter;
+
+      for each vertex v
+      if (v.indegree = = 0)
+      q.enqueue(v);
+
+      while (!q.isempty()) {
+        Vertex v = q.dequeue()
+        v.topNum = ++counter;
+
+        for each Vertex w adjacent to v
+        if ( --w.indegree = = 0)
+        q.enqueue(w);
+      }
+      if (counter != NUM_VERTICES )
+      throw new CycleFoundException();
+    }
+  \end{minted}
+  \caption{Pseudocode to perform topological sort}
+  \label{toposort}
+\end{figure}
+
 \subsubsection{Dijkstra's algorithm}
+\hyperref[dijkalg]{\textbf{See Pseudocode}}
 Dijkstra's algorithm is a graph search algorithm that solves the single-source
 shortest path problem for a graph with non-negative edge path costs.  For a
 given source vertex in the graph, the algorithm finds the path with the lowest
@@ -128,6 +173,36 @@ It has a worst case performance of \(O\left(|E| + |V|\log|V|\right)\)
   \item Select the unvisited node with the smallest tentative distance, and set it as new current-node and repeat from step 3.
 \end{enumerate}
 
+\begin{figure}[p]
+  \begin{minted}[bgcolor=backcolour]{java}
+    void dijkstra(Vertex s){
+      for each Vertex v{
+        v.dist = infinity;
+        v.known = false;
+      }
+      
+      s.dist = 0;
+
+      while(there is an unknown distance vertex){
+        Vertex v = smallest unknown distance vertex;
+        v.known = true;
+        
+        for each Vertex w adjacent to v{
+          if (!w.known){
+            DistType cvw = cost of edge from v to w;
+
+            if (v.dist + cvw < w.dist){
+              decrease(w.dist to v.dist + cww);
+              w.path = v;
+            }
+          }
+        }
+      }
+    }
+  \end{minted}
+  \caption{Pseudocode for Dijkstra's algorithm}
+  \label{dijkalg}
+\end{figure}
 \subsubsection{Prim's algorithm}
 Prim's algorithm is a greedy algorithm that finds a minimum spanning tree for a
 connected weighted undirected graph.
@@ -154,7 +229,4 @@ minimum spanning forest.
     \end{enumerate}
 \end{enumerate}
 
-
 \end{document}
-
-
