@@ -71,6 +71,13 @@
 \section{Graphs}
 
 This is a summary of the graph-related curriculum.
+\subsection{Definitions}
+\begin{definition}[Connected graph]
+  An undirected graph is called connected if there is a path from any vertex to any other vertex in the graph. If the graps is directed, we call it strongly connected.
+\end{definition}
+\begin{definition}[Minimum spanning tree]
+  Given a connected, undirected graph, a spanning tree of that graph is a subgraph that is a tree and connects all the vertices together. We can also assign a weight to each edge and use it to assign a weight to a spanning tree. A minimum spanning tree (MST) is a spanning tree with weight less than or equal to the weight of every other spanning tree.
+\end{definition}
 \subsection{Dijkstra's algorithm}
 Dijkstra's algorithm is a graph search algorithm that solves the single-source
 shortest path problem for a graph with non-negative edge path costs.  For a
@@ -117,6 +124,8 @@ minimum spanning forest.
     \item if that edge connects two different trees, then add it to the forest, combining the two trees into a single tree.
     \end{enumerate}
 \end{enumerate}
+
+
 \end{document}
 
 
