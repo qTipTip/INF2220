@@ -67,18 +67,47 @@
 \date{\normalsize\today} % Today's date or a custom date
 \begin{document}
 \maketitle % Print the title
-
+\tableofcontents
 \section{Graphs}
 
-This is a summary of the graph-related curriculum.
 \subsection{Definitions}
 \begin{definition}[Connected graph]
-  An undirected graph is called connected if there is a path from any vertex to any other vertex in the graph. If the graps is directed, we call it strongly connected.
+  An undirected graph is called \textbf{connected} if there is a path from any vertex to any other vertex in the graph. If the graph is directed, we call it \textbf{strongly connected}.
 \end{definition}
+\begin{definition}[Biconnected graph]
+  A \textbf{biconnected} graph is a connected graph with the property that if any vertex were to be removed, the graph will remain connected.   
+\end{definition}
+
 \begin{definition}[Minimum spanning tree]
-  Given a connected, undirected graph, a spanning tree of that graph is a subgraph that is a tree and connects all the vertices together. We can also assign a weight to each edge and use it to assign a weight to a spanning tree. A minimum spanning tree (MST) is a spanning tree with weight less than or equal to the weight of every other spanning tree.
+  Given a connected, undirected graph, a spanning tree of that graph is a subgraph that is a tree and connects all the vertices together. We can also assign a weight to each edge and use it to assign a weight to a spanning tree. A \textbf{minimum spanning tree} (MST) is a spanning tree with weight less than or equal to the weight of every other spanning tree.
 \end{definition}
-\subsection{Dijkstra's algorithm}
+
+\begin{definition}[Acyclic graph]
+  An \textbf{acyclic graph} is a directed graph that contains no cycles
+\end{definition}
+
+\begin{definition}[Topological sort] 
+  A \textbf{topological sort} is an ordering of 
+  vertices in a directed acyclic
+  graph, such that if there is a path from \(v_i\) to \(v_j\),
+  then \(v_j\) appears \textit{after} \(v_i\) in the ordering.  
+\end{definition}
+
+\subsection{Representation of graphs}
+
+\paragraph{Adjacency matrix} There are several ways to represent a graph. The
+most simple way is called an \textbf{adjacency matrix}. The adjacency matrix is
+a two-dimensional array where for each edge \( \left( u, v \right)\) we set
+\(\mathrm{A}[u][v]\) to \textbf{true}.  This representations is good for dense
+graphs. This means that there are a lot of edges in relation to the number of
+vertices.The space requirement is \(\Theta\left( |V|^2 \right)\)
+
+\paragraph{Adjacency List}
+If the graph on the other hand is not dense, an \textbf{adjacency list} representation is a better option. For each vertex, keep a list of the adjacent vertices. The space requirement is then \( O \left( |E| + |V| \right)\).
+
+\subsection{Graph algorithms}
+
+\subsubsection{Dijkstra's algorithm}
 Dijkstra's algorithm is a graph search algorithm that solves the single-source
 shortest path problem for a graph with non-negative edge path costs.  For a
 given source vertex in the graph, the algorithm finds the path with the lowest
@@ -99,7 +128,7 @@ It has a worst case performance of \(O\left(|E| + |V|\log|V|\right)\)
   \item Select the unvisited node with the smallest tentative distance, and set it as new current-node and repeat from step 3.
 \end{enumerate}
 
-\subsection{Prim's algorithm}
+\subsubsection{Prim's algorithm}
 Prim's algorithm is a greedy algorithm that finds a minimum spanning tree for a
 connected weighted undirected graph.
 
@@ -110,18 +139,18 @@ Its complexity relies entirely on the data structure used. Using an adjacency ma
   \item Repeat step 2 - until all vertices are in the tree.
 \end{enumerate}
 
-\subsection{Kruskal's algorithm}
+\subsubsection{Kruskal's algorithm}
 Kruskal's algorithm is a greedy algorithm that finds a minimum spanning tree
 for a connected weighted graph.  If the graph is not connected, it finds a
 minimum spanning forest.
 
 \begin{enumerate}
-\item Create a forest \(F\), where each vertex in the graph is a separate tree.
-\item Create a set \(S\), containing all the edges in the graph.
-\item while \(S\) is nonempty and \(F\) is not yet spanning.
-  \begin{enumerate}
-    \item remove an edge with minimum weight from \(S\).
-    \item if that edge connects two different trees, then add it to the forest, combining the two trees into a single tree.
+  \item Create a forest \(F\), where each vertex in the graph is a separate tree.
+  \item Create a set \(S\), containing all the edges in the graph.
+  \item while \(S\) is nonempty and \(F\) is not yet spanning.
+    \begin{enumerate}
+      \item remove an edge with minimum weight from \(S\).
+      \item if that edge connects two different trees, then add it to the forest, combining the two trees into a single tree.
     \end{enumerate}
 \end{enumerate}
 
