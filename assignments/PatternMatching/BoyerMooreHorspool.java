@@ -9,7 +9,7 @@ public class BoyerMooreHorspool{
 	private int[] shiftTable;
 
 	public BoyerMooreHorspool(String needle, String haystack){
-		this.needle	= needle.toCharArray();
+		this.needle   = needle.toCharArray();
 		this.haystack = haystack.toCharArray();
 	}	
 

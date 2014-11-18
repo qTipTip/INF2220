@@ -24,7 +24,7 @@ Let _ denote a wildcard.
 While searching for a needle with a wildcard, we can simply chose to only
 try to match up characters up until the first wildcard occurs, because this is going to match by
 definition. We therefore only have to create the bad character shift values for the first clause of
-non wild-card characters. That means for a needle AB__CD__EF___ only the string "EF" has to be accounted for.
+non wild-card characters. That means for a needle AB _ _ CD _ _ EF _ _ _ only the string "EF" has to be accounted for.
 
 ## Class overview
 
