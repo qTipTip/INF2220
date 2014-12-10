@@ -258,7 +258,6 @@ The complexity of insertion sort is $O(N^2)$.
 \subsubsection{Mergesort}
 Mergesort splits an array into two partitions, and then each partition in two until the size of the partitions is one (or < 50 if using 
 the insertion sort optimalization scheme), and then recursively merges adjacent partitions.
-The complexity of Mergesort is $O(N\log(N))$.
 
 \begin{figure}[p]
   \begin{minted}[bgcolor=backcolour]{java}
@@ -314,6 +313,6 @@ The complexity of Mergesort is $O(N\log(N))$.
   \caption{Mergesort pseudocode}
 \end{figure}
 
-\subsubsection{Quicksort}
+/subsubsection{
 
 \end{document} 
