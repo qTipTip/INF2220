@@ -245,7 +245,7 @@ The complexity of insertion sort is $O(N^2)$.
     for (int j = 1; j<array.length; j++){
       Anytype tmp = array[j];
       
-      for(i=j; i > 0 && tmp.compareTo(array[j-1]) < 0; j--){
+      for(i=j; i > 0 && tmp.compareTo(array[i-1]) < 0; i--){
         array[i] = array[i-1];
       }//for
       array[i] = tmp;
@@ -259,6 +259,14 @@ The complexity of insertion sort is $O(N^2)$.
 Mergesort splits an array into two partitions, and then each partition in two until the size of the partitions is one (or < 50 if using 
 the insertion sort optimalization scheme), and then recursively merges adjacent partitions.
 The complexity of Mergesort is $O(N\log(N))$.
+
+\begin{enumerate}
+  \item Let the array be a partition
+  \item Divide each partition into two partitions
+  \item Repeat previous step until all partitions are of size one (Think of this as a binary tree)
+  \item Merge any leaf nodes with the same parent
+  \item Repeat previous step until array is sorted
+\end{enumerate}
 
 \begin{figure}[p]
   \begin{minted}[bgcolor=backcolour]{java}
