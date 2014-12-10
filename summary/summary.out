@@ -11,3 +11,7 @@
 \BOOKMARK [3][-]{subsubsection.2.1.1}{Insertion Sort}{subsection.2.1}% 11
 \BOOKMARK [3][-]{subsubsection.2.1.2}{Mergesort}{subsection.2.1}% 12
 \BOOKMARK [3][-]{subsubsection.2.1.3}{Quicksort}{subsection.2.1}% 13
+\BOOKMARK [1][-]{section.3}{Hashing}{}% 14
+\BOOKMARK [2][-]{subsection.3.1}{Hash Strategy}{section.3}% 15
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Separate Chaining}{subsection.3.1}% 16
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Linear Probing}{subsection.3.1}% 17
