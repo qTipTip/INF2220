@@ -315,8 +315,13 @@ The complexity of Mergesort is $O(N\log(N))$.
 \end{figure}
 
 \subsubsection{Quicksort}
-burgrs nd chipz
+burgrs nd chipz.\\
 Quicksort is a very fast sorting algorithm, based on very simple principles. The quicksort algorithm has an average time complexity of \(O(N\log(N))\), and a worst case of \(O(N^2)\). It's is very fast at sorting primitive data types in both Java and C.
+
+\begin{enumerate}
+  \item Find a pivot, choose the median of the leftmost, rightmost and the center element.
+  \item 
+\end{enumerate}
 
 \begin{figure}[p]
   \begin{minted}[bgcolor=backcolour]{java}
@@ -324,21 +329,26 @@ Quicksort is a very fast sorting algorithm, based on very simple principles. The
                   void quicksort( AnyType [] a){
       quicksort(a, 0, a.length-1);
     }
-    
+                  
+    /*
+    * swap is just a standard swap-method, that swaps array[i] 
+    * with array[j]
+    */
+
     private static <AnyType extends Comparable<? super AnyType>> 
                     anyType median3(AnyType[] a, int left, int right){
       int center = (left, right) / 2;
       if ( a[center].compareTo(a[left]) < 0){
-        swapReferences(a, left, center);
+        swap(a, left, center);
       }
       if ( a[right].compareTo(a[left]) < 0){
-        swapReferences(a, left, right);
+        swap(a, left, right);
       }
       if (a[right].compareTo(a[center]) < 0){
-        swapReferences(a, center, right);
+        swap(a, center, right);
       }
 
-      swapReferences(a, center, right - 1);
+      swap(a, center, right - 1);
       return a[right-1];
     }
 
@@ -353,13 +363,13 @@ Quicksort is a very fast sorting algorithm, based on very simple principles. The
           while(a[++i].compareTo(pivot)< 0){}
           while(a[--j].compareTo(pivot)> 0){}
           if(i < j){
-            swapReferences(a, i, j);
+            swap(a, i, j);
           } else {
             break;
           }
         }
         
-        swapRefrences(a, i, right-1);
+        swap(a, i, right-1);
         quicksort(a, left, i-1);
         quicksort(a, i + 1, right);
         
