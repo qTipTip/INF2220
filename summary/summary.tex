@@ -327,8 +327,10 @@ burgrs nd chipz.\\
 Quicksort is a very fast sorting algorithm, based on very simple principles. The quicksort algorithm has an average time complexity of \(O(N\log(N))\), and a worst case of \(O(N^2)\). It's is very fast at sorting primitive data types in both Java and C.
 
 \begin{enumerate}
-  \item Find a pivot, choose the median of the leftmost, rightmost and the center element.
-  \item 
+  \item  Order the leftmost, rightmost and the center element, let the median swap places with right-1.
+  \item  Order the elements so that everything smaller than the pivot comes before everything greater than the pivot.
+  \item  Put the pivot back in place, partition the array in two (on the pivot) and sort recursively.
+         OR if the size of the partition is less than cutoff,  do insertion sort.
 \end{enumerate}
 
 \begin{figure}[p]
