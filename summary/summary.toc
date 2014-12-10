@@ -6,7 +6,7 @@
 \contentsline {paragraph}{\nonumberline Adjacency List}{2}{section*.3}
 \contentsline {subsection}{\numberline {1.3}Graph algorithms}{2}{subsection.1.3}
 \contentsline {subsubsection}{\numberline {1.3.1}Topological Sort}{2}{subsubsection.1.3.1}
-\contentsline {subsubsection}{\numberline {1.3.2}Dijkstra's algorithm}{2}{subsubsection.1.3.2}
+\contentsline {subsubsection}{\numberline {1.3.2}Dijkstra's algorithm}{3}{subsubsection.1.3.2}
 \contentsline {subsubsection}{\numberline {1.3.3}Prim's algorithm}{3}{subsubsection.1.3.3}
 \contentsline {subsubsection}{\numberline {1.3.4}Kruskal's algorithm}{3}{subsubsection.1.3.4}
 \contentsline {section}{\numberline {2}Sorting}{4}{section.2}
