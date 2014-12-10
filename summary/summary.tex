@@ -260,6 +260,14 @@ Mergesort splits an array into two partitions, and then each partition in two un
 the insertion sort optimalization scheme), and then recursively merges adjacent partitions.
 The complexity of Mergesort is $O(N\log(N))$.
 
+\begin{enumerate}
+  \item Let the array be a partition
+  \item Divide each partition into two partitions
+  \item Repeat previous step until all partitions are of size one (Think of this as a binary tree)
+  \item Merge any leaf nodes with the same parent
+  \item Repeat previous step until array is sorted
+\end{enumerate}
+
 \begin{figure}[p]
   \begin{minted}[bgcolor=backcolour]{java}
 
