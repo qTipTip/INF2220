@@ -65,7 +65,7 @@
   \huge INF2220 - Summary \\ % The assignment title
   \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
-\author{Ivar Haugaløkken Stangeby} % Your name
+\author{Ivar Haugaløkken Stangeby \and Simon Boge Brant} % Your name
 \date{\normalsize\today} % Today's date or a custom date
 \begin{document}
 \maketitle % Print the title
@@ -404,6 +404,18 @@ There are a lot of different strategies when it comes to hashing. We'll cover th
   \item Rehashing
 \end{enumerate}
 
+Separate Chaining uses lists for collision handling. Linear Probing, Quadratic Probing, and Double Hashing uses a function \(f(i)\)
+in the case of a collision to find a new cell for the element. Double hashing utilizes an extra hashing function as well. 
+
+
+The forementioned strategies all try alternative cells untiil an empty cell is found. That is the cells \(h_0(x), h_1(x), \dots\) are tried
+in succession where 
+\[ h_i(x) = (hash(x) + f(i)) \mod TableSize\]
+with \(f(0)=0\).
+
+Rehashing is the act of creating a roughly twice as big table and rehashing all of the old elements into the new table. The hash function
+has to adapt to this new table-size and is done accordingly.
+
 \subsubsection{Separate Chaining}
 Separate chanining involves keeeping a list of all elements that hash to the same value.
 We normally use Javas standard library list implementations. Separate Chaining is special in that that
@@ -414,4 +426,5 @@ It is always appended to the back of the list, unless the element is not found.
 
 \subsubsection{Linear Probing}
 In linear probing \(f\) is a linear function of \(i\). Typically \(f\left( i \right) = i\).
+
 \end{document} 
