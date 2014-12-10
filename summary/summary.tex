@@ -377,4 +377,31 @@ Quicksort is a very fast sorting algorithm, based on very simple principles. The
   \end{minted}
   \caption{Quicksort pseudocode}
 \end{figure}
+
+\section{Hashing}
+Hashing is a technique used for performing insertions, deletions and searches in constant average time.
+The general idea of hashing is to have an array of some fixed size to store the items to, and in one way or another generate
+a hash-key for each object. We need to find a hash function that distributes these keys evenly over the cells in the hash-table.
+
+\subsection{Hash Strategy}
+There are a lot of different strategies when it comes to hashing. We'll cover the following:
+
+\begin{enumerate}
+  \item Separate Chaining
+  \item Linear Probing
+  \item Quadratic Probing
+  \item Double Hashing
+  \item Rehashing
+\end{enumerate}
+
+\subsubsection{Separate Chaining}
+Separate chanining involves keeeping a list of all elements that hash to the same value.
+We normally use Javas standard library list implementations. Separate Chaining is special in that that
+the implementation handles collision by ignoring it. 
+
+To perform an insert we check the appropriate list to see whether the element is already inserted.
+It is always appended to the back of the list, unless the element is not found.
+
+\subsubsection{Linear Probing}
+In linear probing \(f\) is a linear function of \(i\). Typically \(f\left( i \right) = i\).
 \end{document} 
