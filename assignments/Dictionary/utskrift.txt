@@ -1,0 +1,110 @@
+familie removed from dictionary...
+familie added to dictionary... 
+====INF2220 DICTIONARY====
+1) Search for a word
+2) Add a word
+3) Remove a word
+4) Show statistics
+5) Quit
+Enter your selection: 
+4
+Depth of binary search tree: 28
+Level 0: 1
+Level 1: 2
+Level 2: 4
+Level 3: 8
+Level 4: 16
+Level 5: 32
+Level 6: 62
+Level 7: 117
+Level 8: 201
+Level 9: 337
+Level 10: 532
+Level 11: 786
+Level 12: 1058
+Level 13: 1291
+Level 14: 1424
+Level 15: 1487
+Level 16: 1483
+Level 17: 1338
+Level 18: 1189
+Level 19: 942
+Level 20: 665
+Level 21: 482
+Level 22: 333
+Level 23: 219
+Level 24: 126
+Level 25: 71
+Level 26: 43
+Level 27: 16
+Average depth of nodes: 15.428572
+Total number of successful searches: 0
+Min : elektrolytt
+Max : familiefellesskaps
+1) Search for a word
+2) Add a word
+3) Remove a word
+4) Show statistics
+5) Quit
+Enter your selection: 
+1
+Please enter word: (q to return to main menu)
+etterfølger
+Word found: etterfølger
+Please enter word: (q to return to main menu)
+eterfølger
+Suggested words for: eterfølger
+etterfølger
+Number of successful searches: 1
+Time used to generate similar words: 5ms
+1) Search for a word
+2) Add a word
+3) Remove a word
+4) Show statistics
+5) Quit
+Enter your selection: 
+1
+Please enter word: (q to return to main menu)
+etterfolger
+Suggested words for: etterfolger
+etterfølger
+Number of successful searches: 1
+Time used to generate similar words: 1ms
+1) Search for a word
+2) Add a word
+3) Remove a word
+4) Show statistics
+5) Quit
+Enter your selection: 
+1
+Please enter word: (q to return to main menu)
+etterfølgern
+Suggested words for: etterfølgern
+etterfølgere
+etterfølgers
+etterfølger
+etterfølgeren
+etterfølgerne
+Number of successful searches: 1
+Time used to generate similar words: 1ms
+1) Search for a word
+2) Add a word
+3) Remove a word
+4) Show statistics
+5) Quit
+Enter your selection: 
+1
+Please enter word: (q to return to main menu)
+tterfølger
+Suggested words for: tterfølger
+etterfølger
+Number of successful searches: 1
+Time used to generate similar words: 1ms
+1) Search for a word
+2) Add a word
+3) Remove a word
+4) Show statistics
+5) Quit
+Enter your selection: 
+5
+Quitting...
